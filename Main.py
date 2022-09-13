@@ -3,11 +3,14 @@ from typing import Optional
 
 class Node:
     """
-    Provide necessary documentation
+    This class has the Node objects to act as elements of linked list
+    Attributes:
+        data : stored data
+        next : link to the next node
     """
     def __init__(self, data=None, next=None):
         """
-        Provide necessary documentation
+        Initializes the node with the given attributes
         """
         self.data = data
         self.next = next
@@ -15,7 +18,12 @@ class Node:
 
 class LinkedList:
     """
-    Provide necessary documentation
+    This class implements linked list using node objects
+    Methods:
+        insert_at_end : inserts node with data at the end of the list
+        status : displays all elemnts of the list
+    Attributes:
+        self.head : has the first node of linked list. none if empty
     """
     def __init__(self):
         """
@@ -28,18 +36,31 @@ class LinkedList:
         Insert node at end of the list
         :param data: integer data that will be used to create a node
         """
-        # Write code here
+        new = Node(data, None)
+        current = self.head
+        if current is None:
+            self.head = new
+        else:
+            while current.next is not None:
+                current = current.next
+            current.next = new
+  
 
     def status(self):
         """
         It prints all the elements of list.
         """
-        # write code here
+        elements = []
+        current = self.head
+        while current:
+            elements.append(current.data)
+            current = current.next
+        print(elements)
 
 
 class Solution:
     """
-    Provide necessary documentation
+    implements functions to add numbers to the linked list
     """
     def addTwoNumbers(self, first_list: Optional[LinkedList], second_list: Optional[LinkedList]) -> Optional[LinkedList]:
         """
@@ -47,7 +68,25 @@ class Solution:
         :param second_list: Linkedlist with non-negative integers
         :return: returns the sum as a linked list
         """
-        # Write code here
+        result = self.get_num(first_list) + self.get_num(second_list)
+        sum_list = LinkedList()
+        for digit in list(map(int, str(result)[::-1])):
+            sum_list.insert_at_end(digit)
+        return sum_list
+
+    def get_num(self, l: Optional[LinkedList]) -> int:
+        """
+        :param l: LinkedList with non-negative integers
+        :return: returns digits of the list as a single integer
+        """
+        curr = l.head
+        if curr is None:
+            return 0
+        num = ""
+        while curr is not None:
+            num = str(curr.data) + num
+            curr = curr.next
+        return int(num)
         
         
 
@@ -72,3 +111,6 @@ solution = Solution()
 new_list = solution.addTwoNumbers(first_list, second_list)
 # Display the status of new_list
 new_list.status()
+
+
+
