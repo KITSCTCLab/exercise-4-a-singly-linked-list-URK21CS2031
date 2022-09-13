@@ -87,5 +87,30 @@ class Solution:
             num = str(curr.data) + num
             curr = curr.next
         return int(num)
+        
+        
+
+# Do not edit the following code      
+# Create an instance for LinkedList
+first_list = LinkedList()
+# Create an another instance for LinkedList
+second_list = LinkedList()
+# Read data for first list
+data_for_first_list = list(map(int, input().strip().split(" ")))
+# Add data at the end of first_list
+for data in data_for_first_list:
+    first_list.insert_at_end(data)
+# Read data for second list
+data_for_second_list = list(map(int, input().strip().split(" ")))
+# Add data at the end of second_list
+for data in data_for_second_list:
+    second_list.insert_at_end(data)
+# Create an instance for Solution
+solution = Solution()
+# Pass first_list and second_list to addTwoNumbers, which returns a new linked list
+new_list = solution.addTwoNumbers(first_list, second_list)
+# Display the status of new_list
+new_list.status()
+
 
 
